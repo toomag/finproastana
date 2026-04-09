@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>ФинПлан PRO — Инвестиционные проекты и стратегическое сопровождение</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="ФинПлан PRO — центр разработки инвестиционных проектов и стратегического сопровождения: бизнес-планы, финансовые модели, сопровождение кредитования, госпрограммы, инвесторы." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+  <style>
+    :root {
+      --bg: #050814;
+      --bg-alt: #0c1224;
+      --card: #10182b;
+      --accent: #2f89ff;
+      --accent-soft: rgba(47, 137, 255, 0.1);
+      --accent-strong: rgba(47, 137, 255, 0.18);
+      --text: #f6f7fb;
+      --muted: #9ca7c4;
+      --border: rgba(255, 255, 255, 0.08);
+      --danger: #ff4f6b;
+      --success: #45d19a;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #192648 0, #050814 55%);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      font-size: 16px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 16px;
+    }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(to bottom, rgba(5, 8, 20, 0.95), rgba(5, 8, 20, 0.7));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      overflow: hidden;
+      background: radial-gradient(circle at 20% 0, #4fa3ff 0, #050814 40%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 15px;
+    }
+
+    nav a {
+      color: var(--muted);
+      position: relative;
+      padding-bottom: 2px;
+    }
+
+    nav a:hover {
+      color: var(--text);
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -3px;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #2f89ff, #45d19a);
+      transition: width 0.2s ease-out;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    .header-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .header-tagline {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #8ea1ff;
+    }
+
+    .header-phone {
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .phone-link {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .phone-link:hover {
+      text-decoration: underline;
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: none;
+      padding: 9px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.18s ease-out;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2f89ff, #45d19a);
+      color: #050814;
+      box-shadow: 0 10px 30px rgba(25, 100, 255, 0.32);
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.07);
+      transform: translateY(-1px);
+      box-shadow: 0 14px 36px rgba(25, 100, 255, 0.45);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 1px solid rgba(239, 242, 255, 0.22);
+      color: var(--text);
+    }
+
+    .btn-outline:hover {
+      border-color: #2f89ff;
+      background: rgba(47, 137, 255, 0.08);
+    }
+
+    .btn .bi {
+      font-size: 16px;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 40px 0 32px;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
+      gap: 32px;
+      align-items: center;
+    }
+
+    .hero-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 10px 4px 4px;
+      border-radius: 999px;
+      background: rgba(16, 24, 48, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      margin-bottom: 14px;
+      font-size: 11px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    .hero-kicker-dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 0, #45d19a 0, #05a2ff 55%, #050814 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .hero-title {
+      font-size: 36px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+      font-weight: 700;
+    }
+
+    .hero-title span {
+      background: linear-gradient(120deg, #ffffff, #7bbeff);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 520px;
+      margin-bottom: 20px;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .hero-stat {
+      padding: 10px 14px;
+      border-radius: 14px;
+      background: rgba(12, 18, 36, 0.95);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      min-width: 130px;
+    }
+
+    .hero-stat-value {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .hero-stat-label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .hero-note {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-note strong {
+      color: #e0e5ff;
+      font-weight: 500;
+    }
+
+    .hero-secondary {
+      padding: 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: radial-gradient(circle at top left, rgba(47, 137, 255, 0.18), rgba(5, 8, 20, 0.9) 48%);
+      box-shadow: 0 18px 50px rgba(2, 6, 23, 0.85);
+    }
+
+    .hero-secondary-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+
+    .hero-secondary-title {
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #a2b3ff;
+    }
+
+    .pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(5, 8, 20, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .segments-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .segment-card {
+      border-radius: 14px;
+      padding: 10px 11px;
+      background: rgba(5, 8, 20, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 12px;
+    }
+
+    .segment-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: #8ea1ff;
+      margin-bottom: 4px;
+    }
+
+    .segment-title {
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .segment-list {
+      list-style: none;
+      color: var(--muted);
+    }
+
+    .segment-list li {
+      display: flex;
+      gap: 6px;
+    }
+
+    .segment-list li::before {
+      content: "•";
+      color: #45d19a;
+    }
+
+    .hero-guarantee {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .hero-guarantee-icon {
+      width: 18px;
+      height: 18px;
+      border-radius: 999px;
+      background: rgba(69, 209, 154, 0.17);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #45d19a;
+      font-size: 11px;
+      flex-shrink: 0;
+    }
+
+    /* Sections */
+    section {
+      padding: 26px 0;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .section-kicker {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #7b8fff;
+    }
+
+    .section-description {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 6px;
+    }
+
+    .badge {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(10, 16, 33, 0.9);
+      color: var(--muted);
+    }
+
+    /* Cards */
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: radial-gradient(circle at -10% 0, rgba(47, 137, 255, 0.16), #050814 70%);
+      border-radius: 18px;
+      padding: 14px 14px 13px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      box-shadow: 0 16px 38px rgba(2, 6, 23, 0.85);
+    }
+
+    .card-plain {
+      background: rgba(7, 10, 24, 0.98);
+      border-radius: 18px;
+      padding: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .card-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #8ea1ff;
+      margin-bottom: 3px;
+    }
+
+    .card-title {
+      font-size: 15px;
+      font-weight: 600;
+    }
+
+    .card-pill {
+      font-size: 11px;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: rgba(5, 8, 20, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      white-space: nowrap;
+      align-self: flex-start;
+    }
+
+    .card-body {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .card-list {
+      list-style: none;
+      margin-top: 6px;
+    }
+
+    .card-list li {
+      margin-bottom: 3px;
+      display: flex;
+      gap: 6px;
+      align-items: flex-start;
+    }
+
+    .card-list li::before {
+      content: "▹";
+      color: #2f89ff;
+      margin-top: 2px;
+      font-size: 11px;
+    }
+
+    .tagline {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* Highlight bars */
+    .highlight-bar {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .highlight {
+      padding: 9px 11px;
+      border-radius: 14px;
+      background: radial-gradient(circle at top left, rgba(47, 137, 255, 0.2), rgba(5, 8, 20, 0.95));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 12px;
+    }
+
+    .highlight strong {
+      display: block;
+      font-size: 16px;
+      margin-bottom: 2px;
+    }
+
+    /* Two-column */
+    .two-column {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    /* Timeline */
+    .timeline {
+      margin-top: 6px;
+      padding-left: 12px;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .timeline-step {
+      margin-bottom: 7px;
+      position: relative;
+      padding-left: 10px;
+    }
+
+    .timeline-step::before {
+      content: "";
+      position: absolute;
+      left: -13px;
+      top: 4px;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #2f89ff, #45d19a);
+    }
+
+    .timeline-label {
+      font-weight: 500;
+      color: var(--text);
+      font-size: 13px;
+    }
+
+    /* Contact */
+    #contact {
+      padding-bottom: 34px;
+    }
+
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    .contact-card {
+      background: radial-gradient(circle at 0 0, rgba(47, 137, 255, 0.2), #050814 70%);
+      border-radius: 18px;
+      padding: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 16px 40px rgba(2, 6, 23, 0.9);
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    label {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    input,
+    textarea,
+    select {
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(5, 8, 20, 0.9);
+      color: var(--text);
+      padding: 8px 10px;
+      font-size: 13px;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.15s ease-out, box-shadow 0.15s ease-out, background 0.15s ease-out;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgba(156, 167, 196, 0.7);
+    }
+
+    textarea {
+      min-height: 80px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #2f89ff;
+      box-shadow: 0 0 0 1px rgba(47, 137, 255, 0.4);
+      background: rgba(5, 8, 20, 0.96);
+    }
+
+    .contact-note {
+      font-size: 11px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    .contact-meta {
+      border-radius: 18px;
+      background: rgba(7, 10, 24, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      padding: 14px;
+      font-size: 14px;
+      color: var(--muted);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .contact-meta h4 {
+      font-size: 14px;
+      color: var(--text);
+      margin-bottom: 3px;
+    }
+
+    .contact-meta-row {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .contact-chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .chip {
+      border-radius: 999px;
+      padding: 4px 9px;
+      font-size: 11px;
+      background: rgba(5, 8, 20, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Floating WhatsApp button */
+    .whatsapp-floating {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      background: #25d366;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 50;
+      cursor: pointer;
+      text-decoration: none;
+      animation: whatsapp-pulse 1.6s infinite;
+    }
+
+    .whatsapp-floating .bi {
+      font-size: 30px;
+      display: block;
+    }
+
+    .whatsapp-floating:hover {
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.6);
+      transform: translateY(-1px);
+    }
+
+    @keyframes whatsapp-pulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+      }
+      70% {
+        transform: scale(1.06);
+        box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+      }
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 12px 0 18px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+    }
+
+    .footer-links a:hover {
+      color: var(--text);
+    }
+
+    /* Responsive */
+    @media (max-width: 960px) {
+      .hero-inner,
+      .two-column,
+      .contact-wrapper {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .hero-secondary {
+        order: -1;
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      nav {
+        display: none;
+      }
+
+      .header-inner {
+        padding: 10px 0;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .hero-title {
+        font-size: 26px;
+      }
+
+      .hero {
+        padding-top: 28px;
+      }
+
+      .grid-3,
+      .grid-2,
+      .segments-grid,
+      .highlight-bar {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .header-cta {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-between;
+        width: 100%;
+        gap: 6px;
+      }
+
+      .header-tagline {
+        max-width: 60%;
+        white-space: normal;
+        font-size: 10px;
+      }
+
+      .header-phone {
+        font-size: 13px;
+      }
+
+      header .btn-primary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .pill,
+      .card-pill,
+      .chip {
+        white-space: normal;
+      }
+
+      .hero-stats {
+        gap: 10px;
+      }
+
+      .hero-stat {
+        min-width: 0;
+        flex: 1 1 45%;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <div class="container">
+      <div class="header-inner">
+        <div class="brand">
+  <div class="brand-logo" style="width: 170px; height: auto; border-radius: 0; background: none;">
+    <img src="img/logo.png" alt="ФинПлан PRO" style="width: 100%; height: auto; object-fit: contain;" />
+  </div>
+</div>
+        <nav>
+          <a href="#segments">Кому помогаем</a>
+          <a href="#bank">Кредитование в БВУ</a>
+          <a href="#reports">Финансовая отчётность</a>
+          <a href="#advantages">Преимущества</a>
+          <a href="#contact">Связаться</a>
+        </nav>
+        <div class="header-cta">
+          <span class="header-tagline">РАБОТАЕМ ДО ПОЛОЖИТЕЛЬНОГО РЕЗУЛЬТАТА</span>
+          <span class="header-phone"><a href="tel:+77000366536" class="phone-link">8 700 036‑65‑36</a></span>
+          <a href="https://wa.me/77000366536" class="btn btn-primary">
+            <i class="bi bi-whatsapp" aria-hidden="true"></i>
+            <span>Получить консультацию</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-inner">
+          <div>
+            <div class="hero-kicker">
+              <div class="hero-kicker-dot">⚡</div>
+              Центр разработки инвестиционных проектов и стратегического сопровождения
+            </div>
+            <h1 class="hero-title">
+              <span>ФинПлан PRO</span> — от идеи<br />до одобрения финансирования и положительного решения по земельному участку
+            </h1>
+            <p class="hero-subtitle">
+              Разрабатываем и защищаем инвестиционные проекты для банков второго уровня,
+              госпрограмм, фондов, акиматов и частных инвесторов. Готовим финансовые модели,
+              бизнес‑планы и сопровождение до реального <strong>одобрения проекта</strong>.
+            </p>
+
+            <div class="hero-stats">
+              <div class="hero-stat">
+                <div class="hero-stat-value">6+ лет</div>
+                <div class="hero-stat-label">на рынке инвестпроектов</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-value">1 000+</div>
+                <div class="hero-stat-label">довольных клиентов</div>
+              </div>
+              <div class="hero-stat">
+                <div class="hero-stat-value">3–10 лет</div>
+                <div class="hero-stat-label">детальный горизонт расчётов</div>
+              </div>
+            </div>
+
+            <div class="hero-actions">
+              <a href="#contact" class="btn btn-primary">Запросить разбор проекта</a>
+              <a href="#advantages" class="btn btn-outline">Почему нам доверяют</a>
+            </div>
+            <p class="hero-note">
+              <strong>ФинПлан PRO — это:</strong> комплексная подготовка инвестиционного проекта: экономика, стратегия, результат.
+            </p>
+          </div>
+
+          <aside class="hero-secondary" id="segments">
+            <div class="hero-secondary-header">
+              <div>
+                <div class="hero-secondary-title">Кому мы разрабатываем проекты</div>
+                <div style="font-size: 12px; color: var(--muted); margin-top: 2px;">
+                  Строим финансовую архитектуру под требования банков, госструктур и инвесторов.
+                </div>
+              </div>
+              <div class="pill">РАБОТАЕМ ДО ПОЛОЖИТЕЛЬНОГО РЕЗУЛЬТАТА</div>
+            </div>
+
+            <div class="segments-grid">
+              <div class="segment-card">
+                <div class="segment-label">Финансирование</div>
+                <div class="segment-title">Банки второго уровня (БВУ)</div>
+                <ul class="segment-list">
+                  <li>Бизнес‑планы и финансовые модели под требования банка</li>
+                  <li>Расчёт DSCR, IRR, NPV, PI</li>
+                  <li>Подготовка к защите на кредитном комитете</li>
+                  <li>Сопровождение до одобрения финансирования</li>
+                </ul>
+              </div>
+              <div class="segment-card">
+                <div class="segment-label">Господдержка</div>
+                <div class="segment-title">Фонд «Даму» и госпрограммы</div>
+                <ul class="segment-list">
+                  <li>Проекты для субсидирования процентной ставки</li>
+                  <li>Гарантийные механизмы и льготное кредитование</li>
+                  <li>Полный пакет документов под требования программ</li>
+                </ul>
+              </div>
+              <div class="segment-card">
+                <div class="segment-label">Госструктуры</div>
+                <div class="segment-title">Акиматы, СЭЗ, СПК, Астана Инвест</div>
+                <ul class="segment-list">
+                  <li>Инвестобоснование и соц‑экономический эффект</li>
+                  <li>Обоснование рабочих мест и земли</li>
+                  <li>Презентации для инвестсоветов и советов директоров</li>
+                </ul>
+              </div>
+              <div class="segment-card">
+                <div class="segment-label">Инновации</div>
+                <div class="segment-title">Астана Хаб и инвесторы</div>
+                <ul class="segment-list">
+                  <li>Финансовые модели для IT и SaaS</li>
+                  <li>План монетизации и инвестиционные расчёты</li>
+                  <li>Pitch Deck и инвестмеморандумы</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="hero-guarantee">
+              <div class="hero-guarantee-icon">✓</div>
+              <div>
+                Сопровождаем каждый проект до одобрения — банк, госорган или инвестор, включая получение положительного решения по земельному участку.
+                Не просто документы, а <strong>конкретный результат</strong>.
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- Кому актуально -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Сегменты</div>
+            <h2 class="section-title">Для кого актуальны наши решения</h2>
+          </div>
+          <p class="section-description">
+            Разрабатываем проекты с учётом требований банков, государственных программ и международных инвесторов.
+            Помогаем, когда нужен профессиональный пакет документов и защита проекта.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-tag">Банки и фонд «Даму»</div>
+                <div class="card-title">Компании, подающие заявку на кредит</div>
+              </div>
+              <div class="card-pill">Кредитование и субсидии</div>
+            </div>
+            <div class="card-body">
+              <ul class="card-list">
+                <li>Бизнес, проходящий финансовый анализ в банке</li>
+                <li>Проекты с государственным субсидированием</li>
+                <li>Предприниматели, участвующие в программах Фонда «Даму»</li>
+              </ul>
+              <p class="tagline">
+                Готовим отчётность и проекты «языком кредитного комитета».
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-tag">Госорганы и инфраструктура</div>
+                <div class="card-title">Проекты для акиматов, СЭЗ, СПК, Астана Инвест</div>
+              </div>
+              <div class="card-pill">Соц‑экономический эффект</div>
+            </div>
+            <div class="card-body">
+              <ul class="card-list">
+                <li>Инвестиционное обоснование и общественная значимость</li>
+                <li>Расчёт рабочих мест и налогового эффекта</li>
+                <li>Обоснование земельного участка и мощностей</li>
+              </ul>
+              <p class="tagline">
+                Готовим проекты под формат инвестиционных и земельных комиссий.
+              </p>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <div>
+                <div class="card-tag">Инвесторы</div>
+                <div class="card-title">Частные и международные инвесторы</div>
+              </div>
+              <div class="card-pill">Deal‑структурирование</div>
+            </div>
+            <div class="card-body">
+              <ul class="card-list">
+                <li>Pitch Deck и инвестмеморандумы</li>
+                <li>Структурирование сделки и долевого участия</li>
+                <li>Финансовые модели на русском и английском языках</li>
+              </ul>
+              <p class="tagline">
+                Готовим документацию международного уровня для трансграничного финансирования.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="highlight-bar">
+          <div class="highlight">
+            <strong>6+ лет</strong>
+            на рынке инвестиционных проектов и стратегического сопровождения.
+          </div>
+          <div class="highlight">
+            <strong>1 000+</strong>
+            клиентов успешно реализовали свои идеи и получили одобрение.
+          </div>
+          <div class="highlight">
+            <strong>100%</strong>
+            проектов доводим до защиты и решения по финансированию.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Сопровождение кредитования -->
+    <section id="bank">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Кредитование в банках второго уровня</div>
+            <h2 class="section-title">Полный цикл сопровождения кредитования в БВУ</h2>
+          </div>
+          <p class="section-description">
+            Мы не ограничиваемся разработкой бизнес‑плана. Сопровождаем клиента на всех этапах получения финансирования —
+            от выбора банка до подписания кредитного договора.
+          </p>
+        </div>
+
+        <div class="two-column">
+          <div class="card-plain">
+            <div class="card-header">
+              <div>
+                <div class="card-tag">Услуга «под ключ»</div>
+                <div class="card-title">Что входит в сопровождение кредитования</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="timeline-step">
+                  <div class="timeline-label">1. Стратегия финансирования</div>
+                  <div>Подбор подходящего банка и кредитной программы под ваш проект.</div>
+                </div>
+                <div class="timeline-step">
+                  <div class="timeline-label">2. Бизнес‑план и финансовая модель</div>
+                  <div>
+                    Подготовка бизнес‑плана по требованиям БВУ. Разработка финансовой модели:
+                    Cash Flow, DSCR, IRR, NPV, PI, точка безубыточности.
+                  </div>
+                </div>
+                <div class="timeline-step">
+                  <div class="timeline-label">3. Пакет документов</div>
+                  <div>Формирование полного пакета для подачи в банк и государственные программы.</div>
+                </div>
+                <div class="timeline-step">
+                  <div class="timeline-label">4. Переговоры и кредитный комитет</div>
+                  <div>Участие в переговорах, подготовка ответов на замечания и корректировка показателей.</div>
+                </div>
+                <div class="timeline-step">
+                  <div class="timeline-label">5. Подписание договора</div>
+                  <div>Сопровождение до подписания кредитного договора и закрытия всех вопросов.</div>
+                </div>
+              </div>
+              <p class="tagline">
+                Мы выстраиваем <strong>стратегию кредитования</strong>, а не просто передаём документы в банк.
+                Задача ФинПлан PRO — повысить вероятность одобрения проекта.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-plain">
+            <div class="card-header">
+              <div>
+                <div class="card-tag">Господдержка через БВУ</div>
+                <div class="card-title">Работа с государственными инструментами</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="card-list">
+                <li>Субсидирование через Фонд «Даму»</li>
+                <li>Получение государственных гарантий по кредитам</li>
+                <li>Льготные программы финансирования МСБ</li>
+                <li>Подготовка проекта под требования господдержки</li>
+              </ul>
+              <p class="tagline">
+                Разрабатываем проекты с учётом действующих государственных программ и требований регуляторов.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Финансовая отчётность -->
+    <section id="reports">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Финансовая аналитика</div>
+            <h2 class="section-title">Составление финансовой отчётности для банка</h2>
+          </div>
+          <p class="section-description">
+            Готовим полный пакет финансовых документов для подачи в БВУ.
+            От управленческой отчётности до анализа долговой нагрузки и устойчивости бизнеса.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card-plain">
+            <div class="card-header">
+              <div>
+                <div class="card-tag">Финансовая отчётность</div>
+                <div class="card-title">Что мы готовим для банка</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="card-list">
+                <li>Подготовка управленческой финансовой отчётности</li>
+                <li>Отчёт о прибылях и убытках (P&amp;L)</li>
+                <li>Баланс (Отчёт о финансовом положении)</li>
+                <li>Отчёт о движении денежных средств (Cash Flow)</li>
+                <li>Расчёт долговой нагрузки (DSCR)</li>
+                <li>Расшифровки по ключевым статьям</li>
+                <li>Анализ финансовой устойчивости компании</li>
+                <li>Доработка отчётности по замечаниям банка</li>
+              </ul>
+              <p class="tagline">
+                Готовим отчётность не просто «для бухгалтерии», а в формате, понятном
+                <strong>кредитному комитету банка</strong>.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-plain">
+            <div class="card-header">
+              <div>
+                <div class="card-tag">Горизонт и глубина анализа</div>
+                <div class="card-title">Глубокая финансовая аналитика на 3–10 лет</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="card-list">
+                <li>Детальный Cash Flow по сценариям</li>
+                <li>Расчёт IRR, NPV, PI и точки безубыточности</li>
+                <li>Сценарный анализ: базовый, оптимистичный, консервативный</li>
+                <li>Анализ рисков и чувствительности проекта</li>
+              </ul>
+              <p class="tagline">
+                Строим финансовую архитектуру проекта, а не просто считаем цифры.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Дополнительные направления -->
+    <section>
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Дополнительно</div>
+            <h2 class="section-title">Типы проектов, с которыми мы работаем</h2>
+          </div>
+          <p class="section-description">
+            Сопровождаем индустриальные, аграрные, логистические и девелоперские проекты.
+            Готовим обоснование для получения земельных участков и статуса резидента СЭЗ или технопарка.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card-plain">
+            <div class="card-header">
+              <div>
+                <div class="card-tag">Индустрия и девелопмент</div>
+                <div class="card-title">Производственные и инфраструктурные проекты</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="card-list">
+                <li>Производственные и индустриальные проекты</li>
+                <li>Логистические центры и склады</li>
+                <li>Коммерческая недвижимость</li>
+                <li>Масштабирование действующего бизнеса</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card-plain">
+            <div class="card-header">
+              <div>
+                <div class="card-tag">Агро и земля</div>
+                <div class="card-title">Агропроекты и земельные участки</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="card-list">
+                <li>Инвестиционное обоснование агропроектов</li>
+                <li>Расчёт мощностей и персонала</li>
+                <li>Получение земельных участков и обоснование выбора</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="card-plain">
+            <div class="card-header">
+              <div>
+                <div class="card-tag">IT и инновации</div>
+                <div class="card-title">Проекты для Астана Хаб</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="card-list">
+                <li>Финансовые модели для IT и SaaS</li>
+                <li>План монетизации и дорожная карта роста</li>
+                <li>Социально‑экономический эффект и документация для резидентства</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="badge-row">
+          <div class="badge">Банки второго уровня</div>
+          <div class="badge">Фонд «Даму»</div>
+          <div class="badge">Акиматы</div>
+          <div class="badge">Астана Хаб</div>
+          <div class="badge">СЭЗ</div>
+          <div class="badge">СПК</div>
+          <div class="badge">Астана Инвест</div>
+          <div class="badge">Частные и международные инвесторы</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Преимущества -->
+    <section id="advantages">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Почему выбирают ФинПлан PRO</div>
+            <h2 class="section-title">Наши ключевые преимущества</h2>
+          </div>
+          <p class="section-description">
+            Понимаем, как смотрят на проекты банки, госструктуры и инвесторы.
+            Наша задача — не просто подготовить документы, а выстроить стратегию до получения финансирования.
+          </p>
+        </div>
+
+        <div class="grid-2">
+          <div class="card-plain">
+            <div class="card-header">
+              <div>
+                <div class="card-tag">Результат, а не отчёт</div>
+                <div class="card-title">1. Работаем до положительного результата</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <p>
+                Сопровождаем каждый проект до одобрения — со стороны банка, госоргана или инвестора.
+                <strong>Не просто пакет документов, а реальный результат.</strong>
+              </p>
+            </div>
+
+            <div class="card-header" style="margin-top: 12px;">
+              <div>
+                <div class="card-tag">Язык кредитных комитетов</div>
+                <div class="card-title">2. Понимаем требования БВУ и госструктур</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <p>
+                Готовим проекты «языком банкиров» и инвестиционных комитетов.
+                Знаем, на что смотрят при анализе IRR, DSCR, NPV и управлении рисками.
+              </p>
+            </div>
+
+            <div class="card-header" style="margin-top: 12px;">
+              <div>
+                <div class="card-tag">Под ключ</div>
+                <div class="card-title">3. Комплексный подход</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <p>
+                От идеи до получения финансирования и земельного участка:
+                бизнес‑план, финансовая модель, сопровождение, защита проекта.
+              </p>
+            </div>
+          </div>
+
+          <div class="card-plain">
+            <div class="card-header">
+              <div>
+                <div class="card-tag">Госпрограммы и международный формат</div>
+                <div class="card-title">4–5. Опыт с госпрограммами и международными инвесторами</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="card-list">
+                <li>Опыт работы с Банками второго уровня, Фондом «Даму», акиматами, СЭЗ, СПК, Астана Хаб и Астана Инвест.</li>
+                <li>Подготовка проектов для зарубежных инвесторов и банков в международном формате.</li>
+                <li>Финансовые модели на русском и английском языках.</li>
+              </ul>
+            </div>
+
+            <div class="card-header" style="margin-top: 12px;">
+              <div>
+                <div class="card-tag">Финансовая архитектура</div>
+                <div class="card-title">6–8. Аналитика, конфиденциальность и стратегия</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <ul class="card-list">
+                <li>Глубокая финансовая аналитика на 3–10 лет, сценарный анализ.</li>
+                <li>Конфиденциальная работа с проектами любого масштаба.</li>
+                <li>Мы строим финансовую архитектуру проекта, а не просто считаем цифры.</li>
+              </ul>
+              <p class="tagline">
+                <strong>ФинПлан PRO — это экономика, стратегия и результат.</strong>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Свяжитесь с нами</div>
+            <h2 class="section-title">Запросите разбор вашего проекта</h2>
+          </div>
+          <p class="section-description">
+            Опишите вашу идею или действующий бизнес — подготовим предложение по структуре финансирования,
+            необходимым документам и срокам реализации.
+          </p>
+        </div>
+
+        <div class="contact-wrapper">
+          <div class="contact-card">
+            <form class="contact-form">
+              <div class="field-group">
+                <label for="name">Имя и компания</label>
+                <input id="name" name="name" type="text" placeholder="Например: Иван, ООО «ИнвестПроект»" />
+              </div>
+              <div class="field-group">
+                <label for="phone">Телефон / WhatsApp</label>
+                <input id="phone" name="phone" type="tel" placeholder="8 700 036‑65‑36" />
+              </div>
+              <div class="field-group">
+                <label for="segment">Кому вы подаёте проект</label>
+                <select id="segment" name="segment">
+                  <option value="">Выберите вариант</option>
+                  <option>Банк второго уровня (БВУ)</option>
+                  <option>Фонд «Даму» / господдержка</option>
+                  <option>Акимат / СЭЗ / СПК / Астана Инвест</option>
+                  <option>Астана Хаб</option>
+                  <option>Частный инвестор</option>
+                  <option>Международный инвестор / зарубежный банк</option>
+                  <option>Пока выбираю формат финансирования</option>
+                </select>
+              </div>
+              <div class="field-group">
+                <label for="message">Кратко опишите проект</label>
+                <textarea id="message" name="message" placeholder="Сфера, объём инвестиций, стадия проекта, какие документы уже есть."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Отправить заявку</button>
+              <div class="contact-note">
+                Нажимая на кнопку, вы соглашаетесь на обработку персональных данных.
+                Мы соблюдаем полную конфиденциальность информации.
+              </div>
+            </form>
+          </div>
+
+          <aside class="contact-meta">
+            <div>
+              <h4>Как мы работаем с заявками</h4>
+              <div class="contact-meta-row">
+                <div>1. Изучаем ваш запрос и материалы.</div>
+                <div>2. Обозначаем возможный формат финансирования и господдержки.</div>
+                <div>3. Предлагаем пакет услуг и ориентировочные сроки.</div>
+              </div>
+            </div>
+
+            <div>
+              <h4>Контакты</h4>
+              <div class="contact-meta-row">
+          <div><strong>Телефон / WhatsApp:</strong> <a href="tel:+77000366536" class="phone-link">8 700 036‑65‑36</a></div>
+                <div><strong>E‑mail:</strong> Bass.bai@bk.ru</div>
+              </div>
+              <div class="contact-meta-row">
+                <div><strong>Ваш персональный маркетолог:</strong> Гакку</div>
+          <div>Телефон / WhatsApp: <a href="tel:+77000366536" class="phone-link">8 700 036‑65‑36</a></div>
+                <div>E‑mail: Bass.bai@bk.ru</div>
+              </div>
+            </div>
+
+            <div>
+              <h4>Чем можем быть полезны</h4>
+              <div class="contact-chip-row">
+                <span class="chip">Бизнес‑план и финмодель</span>
+                <span class="chip">Сопровождение в банке</span>
+                <span class="chip">Госпрограммы и субсидии</span>
+                <span class="chip">Инвесторы и меморандумы</span>
+                <span class="chip">Получение земельных участков</span>
+                <span class="chip">Проекты для Астана Хаб</span>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <div>© ФинПлан PRO. Контакт: <a href="tel:+77000366536" class="phone-link">8 700 036‑65‑36</a>, Bass.bai@bk.ru.</div>
+        <div class="footer-links">
+          <span>Конфиденциальность и защита информации клиента.</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <a href="https://wa.me/77000366536" class="whatsapp-floating" aria-label="Написать в WhatsApp">
+    <i class="bi bi-whatsapp" aria-hidden="true"></i>
+  </a>
+</div>
+</body>
+</html>
